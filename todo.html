@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HEXENBANE | Gothic Gym</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0b0b0d;
+      --bg-card: #141418;
+      --accent: #8b0000;
+      --accent-soft: #b30000;
+      --text-main: #f2f2f2;
+      --text-muted: #a0a0a0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(180deg, #050507, #0b0b0d);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+                  url('https://images.unsplash.com/photo-1517960413843-0aee8e2d471c');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(139,0,0,0.8);
+    }
+
+    header p {
+      margin-top: 15px;
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    header button {
+      margin-top: 40px;
+      padding: 14px 40px;
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--text-main);
+      font-size: 1rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    header button:hover {
+      background: var(--accent);
+      box-shadow: 0 0 25px rgba(139,0,0,0.7);
+    }
+
+    /* ================= NAV ================= */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10,10,12,0.95);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #1f1f1f;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav li {
+      padding: 18px 25px;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav li:hover,
+    nav li.active {
+      color: var(--accent-soft);
+    }
+
+    /* ================= SECTIONS ================= */
+    section {
+      padding: 90px 10%;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      letter-spacing: 3px;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* ================= PRODUCTS ================= */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid #1e1e1e;
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(139,0,0,0.25);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      filter: grayscale(40%) contrast(110%);
+    }
+
+    .card h3 {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* ================= ABOUT ================= */
+    .about {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      background: #050507;
+      padding: 40px 10%;
+      text-align: center;
+      border-top: 2px solid var(--accent);
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      header p {
+        padding: 0 20px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="home">
+    <h1>HEXENBANE</h1>
+    <p>Fuerza oscura, disciplina absoluta y un culto al hierro. Bienvenido al templo donde el cuerpo se forja.</p>
+    <button onclick="scrollToSection('products')">VER PRODUCTOS</button>
+  </header>
+
+  <!-- NAV -->
+  <nav>
+    <ul>
+      <li class="active" onclick="setActive(this); scrollToSection('home')">Inicio</li>
+      <li onclick="setActive(this); scrollToSection('products')">Productos</li>
+      <li onclick="setActive(this); scrollToSection('about')">Nosotros</li>
+      <li onclick="setActive(this); scrollToSection('contact')">Contacto</li>
+    </ul>
+  </nav>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <h2 class="section-title">Secciones</h2>
+    <div class="products">
+
+      <a href="rutinas.html" class="card" style="text-decoration:none; color:inherit;">
+        <img src="https://images.unsplash.com/photo-1518611012118-f0c5d0a7f9a2" alt="Rutinas" />
+        <h3>Rutinas</h3>
+        <p>Programas de entrenamiento enfocados en fuerza, volumen y resistencia.</p>
+      </a>
+
+      <a href="equipo.html" class="card" style="text-decoration:none; color:inherit;">
+        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1" alt="Equipo" />
+        <h3>Equipo</h3>
+        <p>Equipo de hierro diseñado para entrenamientos extremos.</p>
+      </a>
+
+      <a href="productos.html" class="card" style="text-decoration:none; color:inherit;">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61" alt="Productos" />
+        <h3>Productos</h3>
+        <p>Suplementos, accesorios y artículos esenciales del ritual.</p>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">Nosotros</h2>
+    <p class="about">
+      HEXENBANE no es solo un gimnasio o una marca. Es una hermandad dedicada al poder físico y mental.
+      Creemos en la disciplina, el sacrificio y la estética oscura como símbolo de fortaleza.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contacto</h2>
+    <p class="about">Contacto@hexenbane.com<br>Instagram / Facebook / TikTok</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 HEXENBANE. Fuerza. Oscuridad. Disciplina.</p>
+  </footer>
+
+  <script>
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function setActive(element) {
+      document.querySelectorAll('nav li').forEach(li => li.classList.remove('active'));
+      element.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+// JS reservado para animaciones futuras
